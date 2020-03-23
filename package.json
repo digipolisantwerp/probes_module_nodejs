@@ -1,0 +1,25 @@
+{
+  "name": "probes_module_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "scripts": {
+    "build": "npx rollup -c",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "~7.9.0",
+    "@babel/preset-env": "~7.9.0",
+    "@babel/register": "~7.9.0",
+    "@rollup/plugin-node-resolve": "~7.1.1",
+    "rollup-plugin-babel": "~4.4.0"
+  },
+  "dependencies": {
+    "async": "~3.2.0",
+    "express": "~4.17.1"
+  }
+}
