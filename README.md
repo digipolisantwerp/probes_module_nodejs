@@ -17,25 +17,6 @@ Here is [a small how-to](https://bitbucket.antwerpen.be/projects/PLAT/repos/docu
 
   `npm i @digipolis/probes`
 
-  ### Error object
-  When there's an error (app is not alive/ready) you'll reject with an object.
-
-  | Key                       | Value                            |
-  | ------------------------- | -------------------------------- |
-  | **status** (number)       | The [status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) you want to respond with. Should not be `200`. |
-  | **message** (string       | A human readable message that will appear in the logs and your browser  |
-
-  If you omit a status a 500 will be used.
-
-
-  #### Example
-  ```js
-    return reject({status: 400, message: 'Uh oh! This app is not ready.'});
-  ```
-
-  If your app is in good shape and ready to handle traffic you resolve the promise.
-  `return resolve();`
-
   ### Configuration
   This package will work without any configuration but it is best practice to add some.
   
@@ -72,6 +53,25 @@ const config = {
 app.use(probes(config));
 
 ```
+
+  ### Error object
+  When there's an error (app is not alive/ready) you'll reject with an object.
+
+  | Key                       | Value                            |
+  | ------------------------- | -------------------------------- |
+  | **status** (number)       | The [status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) you want to respond with. Should not be `200`. |
+  | **message** (string       | A human readable message that will appear in the logs and your browser  |
+
+  If you omit a status a 500 will be used.
+
+
+  #### Example
+  ```js
+    return reject({status: 400, message: 'Uh oh! This app is not ready.'});
+  ```
+
+  If your app is in good shape and ready to handle traffic you resolve the promise.
+  `return resolve();`
 
 ## Tests
 run `npm t`
