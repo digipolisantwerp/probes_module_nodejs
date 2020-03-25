@@ -15,7 +15,7 @@ export default function createController(config = {}) {
           alive.map(check => check())
         )
         .then(() => {
-          return res.json({ status: 'ok' });
+          return res.json({ status: 200, message: 'ok' });
         })
         .catch(err => {
           console.error(`PROBES_ERROR_1: ${err.message || ''}`);
@@ -34,7 +34,7 @@ export default function createController(config = {}) {
           ready.map(check => check())
         )
         .then(() => {
-          return res.json({ status: 'ok' });
+          return res.json({ status: 200, message: 'ok' });
         })
         .catch(err => {
           console.error(`PROBES_ERROR_3: ${err.message || ''}`);
