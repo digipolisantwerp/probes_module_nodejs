@@ -74,7 +74,7 @@ app.use(probes(config));
 ```
 
 ## Tests
-Not yet implemented.
+run `npm t`
 
 ## Authors
 See [the list](https://github.com/digipolisantwerp/authz_module_nodejs/graphs/contributors) of contributors who participated in this project.
