@@ -33,8 +33,8 @@ Here is [a small how-to](https://bitbucket.antwerpen.be/projects/PLAT/repos/docu
     return reject({status: 400, message: 'Uh oh! This app is not ready.'});
   ```
 
-  If your app is in good shape and ready to handle trafic you resolve te promise.
-  `return resolve()`
+  If your app is in good shape and ready to handle traffic you resolve the promise.
+  `return resolve();`
 
   ### Configuration
   This package will work without any configuration but it is best practice to add some.
