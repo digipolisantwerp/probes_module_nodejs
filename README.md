@@ -77,4 +77,4 @@ app.use(probes(config));
 run `npm t`
 
 ## Authors
-See [the list](https://github.com/digipolisantwerp/authz_module_nodejs/graphs/contributors) of contributors who participated in this project.
+See [the list](https://github.com/digipolisantwerp/probes_module_nodejs/graphs/contributors) of contributors who participated in this project.
