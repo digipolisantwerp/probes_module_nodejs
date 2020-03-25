@@ -1,37 +1,49 @@
-import { runHooks } from './helpers';
-
 export default function createController(config = {}) {
   const {
     hooks = {},
   } = config;
 
-  let {
-    readyHooks = [],
-    aliveHooks = [],
+  const {
+    ready = [],
+    alive = [],
   } = hooks;
 
-  function runAliveChecks(req, res) {
-    runHooks(aliveHooks, req, res, (err) => {
-      const statusCode = err ? err.statusCode : 200;
-      const message = err ? err.message : 'ok';
-
-      return res.status(statusCode).json({
-        message: message,
-        status: statusCode,
-      });
-    });
+  async function runAliveChecks(req, res) {
+    try {
+      await Promise
+        .all(
+          alive.map(check => check())
+        )
+        .then(() => {
+          return res.json({ status: 'ok' });
+        })
+        .catch(err => {
+          console.error(`PROBES_ERROR_1: ${err.message || ''}`);
+          return res.status(err.status || 500).json({ 'message': err.message || '' });
+        });
+    } catch (error) {
+      console.error(`PROBES_ERROR_2: ${error.message || ''}`);
+      return res.status(error.status || 500).json({ message: error.message || '' });
+    }
   }
 
-  function runReadyChecks(req, res) {
-    runHooks(readyHooks, req, res, (err) => {
-      const statusCode = err ? err.statusCode : 200;
-      const message = err ? err.message : 'ok';
-
-      return res.status(statusCode).json({
-        message: message,
-        status: statusCode,
-      });
-    });
+  async function runReadyChecks(req, res) {
+    try {
+      await Promise
+        .all(
+          ready.map(check => check())
+        )
+        .then(() => {
+          return res.json({ status: 'ok' });
+        })
+        .catch(err => {
+          console.error(`PROBES_ERROR_3: ${err.message || ''}`);
+          return res.status(err.status || 500).json({ 'message': err.message || '' });
+        });
+    } catch (error) {
+      console.error(`PROBES_ERROR_4: ${error.message || ''}`);
+      return res.status(error.status || 500).json({ message: error.message || '' });
+    }
   }
 
   return {

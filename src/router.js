@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import createController from './controller';
 
-export default function loadRoutes(app, config) {
+export default function loadRoutes(config) {
 
   const {
     runAliveChecks,

@@ -19,7 +19,6 @@
     "rollup-plugin-babel": "~4.4.0"
   },
   "dependencies": {
-    "async": "~3.2.0",
     "express": "~4.17.1"
   }
 }

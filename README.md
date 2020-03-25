@@ -10,51 +10,71 @@ This package exposes two endpoints:
 - **/status/alive** for the livenessprobe.
 - **/status/ready** for the readinessprobe.
 
+After including this package in your project you'll need to configure it in [appconfig](https://appconfig.antwerpen.be).
+Here is [a small how-to](https://bitbucket.antwerpen.be/projects/PLAT/repos/documentation/browse/Docker.md#probes).
+
 ## Installation
 
   `npm i @digipolis/probes`
 
-  ### Configuration
+  ### Error object
+  When there's an error (app is not alive/ready) you'll reject with an object.
 
+  | Key                       | Value                            |
+  | ------------------------- | -------------------------------- |
+  | **status** (number)       | The [status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) you want to respond with. Should not be `200`. |
+  | **message** (string       | A human readable message that will appear in the logs and your browser  |
+
+  If you omit a status a 500 will be used.
+
+
+  #### Example
+  ```js
+    return reject({status: 400, message: 'Uh oh! This app is not ready.'});
+  ```
+
+  If your app is in good shape and ready to handle trafic you resolve te promise.
+  `return resolve()`
+
+  ### Configuration
   This package will work without any configuration but it is best practice to add some.
   
   | Param                     | Description                      |
   | ------------------------- | -------------------------------- |
-  | **aliveHooks** (optional) | Array with alive check functions |
-  | **readyHooks** (optional) | Array with ready check functions |
-  
+  | **alive** (optional)      | Array with alive check functions |
+  | **ready** (optional)      | Array with ready check functions |
+
   #### Example
-  
-  ```js
+
+```js
 const probes = require('@digipolis/probes');
 
-function runReadyCheck(req, res, next) {
-  const appIsReady = false;
+function customReadyCheck() {
+  const ready = true;
 
-  if (appIsReady) {
-    return next();
-  }
+  return new Promise((resolve, reject) => {
+    if(!ready) {
+      return reject({status: 400, message: 'Uh oh! This app is not ready.'});
+    }
 
-  const err = new Error("Uh oh! This app is not ready.");
-  err.statusCode = 500;
-
-  return next(err);
+    return resolve();
+  })
 }
 
 const config = {
   hooks: {
-    readyHooks: [
-      runReadyCheck
+    ready: [
+      customReadyCheck
     ]
   }
 };
 
-app.use(probes(app, config));
+app.use(probes(config));
 
-  ```
+```
 
 ## Tests
 Not yet implemented.
 
 ## Authors
-See [the list](https://github.com/digipolisantwerp/probes_module_nodejs/graphs/contributors) of contributors who participated in this project.
+See [the list](https://github.com/digipolisantwerp/authz_module_nodejs/graphs/contributors) of contributors who participated in this project.
