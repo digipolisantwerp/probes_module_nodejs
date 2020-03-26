@@ -1,6 +1,6 @@
 {
   "name": "@digipolis/probes",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A ready to use livenessprobe and readinessprobe for your application.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
