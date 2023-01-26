@@ -4,6 +4,7 @@
   "description": "A ready to use livenessprobe and readinessprobe for your application.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "npx rollup -c",
     "prepublish": "npm run build",
