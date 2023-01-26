@@ -3,11 +3,12 @@ function customReadyCheckResolve() {
 
   return new Promise((resolve, reject) => {
     if (!ready) {
-      return reject({ status: 400, message: 'Uh oh! This app is not ready.' });
+      // eslint-disable-next-line prefer-promise-reject-errors
+      reject({ status: 400, message: 'Uh oh! This app is not ready.' });
     }
 
-    return resolve();
-  })
+    resolve();
+  });
 }
 
 function customReadyCheckReject() {
@@ -15,31 +16,32 @@ function customReadyCheckReject() {
 
   return new Promise((resolve, reject) => {
     if (!ready) {
-      return reject({ status: 400, message: 'Uh oh! This app is not ready.' });
+      // eslint-disable-next-line prefer-promise-reject-errors
+      reject({ status: 400, message: 'Uh oh! This app is not ready.' });
     }
 
-    return resolve();
-  })
+    resolve();
+  });
 }
 
 export const configResolve = {
   hooks: {
     ready: [
-      customReadyCheckResolve
+      customReadyCheckResolve,
     ],
     alive: [
-      customReadyCheckResolve
-    ]
-  }
+      customReadyCheckResolve,
+    ],
+  },
 };
 
 export const configReject = {
   hooks: {
     ready: [
-      customReadyCheckReject
+      customReadyCheckReject,
     ],
     alive: [
-      customReadyCheckReject
-    ]
-  }
+      customReadyCheckReject,
+    ],
+  },
 };

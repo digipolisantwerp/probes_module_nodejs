@@ -1,9 +1,7 @@
-
 import { Router } from 'express';
 import createController from './controller';
 
 export default function loadRoutes(config) {
-
   const {
     runAliveChecks,
     runReadyChecks,
@@ -15,4 +13,4 @@ export default function loadRoutes(config) {
   router.get('/status/ready', runReadyChecks);
 
   return router;
-};
+}

@@ -1,13 +1,16 @@
-/// <reference types="typescript" />
-import { RequestHandler } from 'express';
+/// <reference types="node" />
+declare module '@digipolis/probes' {
+  import { RequestHandler } from 'express';
+  export type ProbesHookFn = () => Promise<any>;
 
-type ProbesHookFn = () => Promise<void>;
+  export interface ProbesConfig {
+    hooks?: {
+      ready?: ProbesHookFn[];
+      alive?: ProbesHookFn[];
+    };
+  }
 
-interface ProbesConfig {
-  hooks?: {
-    ready?: ProbesHookFn[];
-    alive?: ProbesHookFn[];
-  };
+  function probes(config?: ProbesConfig): RequestHandler;
+
+  export = probes;
 }
-
-export default function probes(config?: ProbesConfig): RequestHandler;

@@ -8,30 +8,28 @@ export default function createController(config = {}) {
     alive = [],
   } = hooks;
 
-  async function runAliveChecks(req, res) {
+  async function runAliveChecks(_req, res) {
     try {
       await Promise
         .all(
-          alive.map(check => check())
+          alive.map((check) => check()),
         );
 
       return res.json({ status: 200, message: 'ok' });
-
     } catch (error) {
       console.error(`PROBES_ERROR_1: ${error.message || ''}`);
       return res.status(error.status || 500).json({ message: error.message || '' });
     }
   }
 
-  async function runReadyChecks(req, res) {
+  async function runReadyChecks(_req, res) {
     try {
       await Promise
         .all(
-          ready.map(check => check())
+          ready.map((check) => check()),
         );
 
       return res.json({ status: 200, message: 'ok' });
-
     } catch (error) {
       console.error(`PROBES_ERROR_2: ${error.message || ''}`);
       return res.status(error.status || 500).json({ message: error.message || '' });

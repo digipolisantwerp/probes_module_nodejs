@@ -1,5 +1,3 @@
-'use strict';
-
 import { strict as assert } from 'assert';
 import express from 'express';
 import request from 'supertest';
