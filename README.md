@@ -15,7 +15,9 @@ Here is [a small how-to](https://bitbucket.antwerpen.be/projects/PLAT/repos/docu
 
 ## Installation
 
+
   `npm i @digipolis/probes`
+
 
   ### Configuration
   This package will work without any configuration but it is best practice to add some.
