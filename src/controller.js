@@ -12,11 +12,10 @@ export default function createController(config = {}) {
     try {
       await Promise
         .all(
-          alive.map(check => check())
+          alive.map((check) => check()),
         );
 
       return res.json({ status: 200, message: 'ok' });
-
     } catch (error) {
       console.error(`PROBES_ERROR_1: ${error.message || ''}`);
       return res.status(error.status || 500).json({ message: error.message || '' });
@@ -27,11 +26,10 @@ export default function createController(config = {}) {
     try {
       await Promise
         .all(
-          ready.map(check => check())
+          ready.map((check) => check()),
         );
 
       return res.json({ status: 200, message: 'ok' });
-
     } catch (error) {
       console.error(`PROBES_ERROR_2: ${error.message || ''}`);
       return res.status(error.status || 500).json({ message: error.message || '' });

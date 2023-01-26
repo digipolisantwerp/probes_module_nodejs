@@ -8,6 +8,7 @@
   "scripts": {
     "build": "npx rollup -c",
     "prepublish": "npm run build",
+    "lint": "eslint . --ext .js",
     "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/.bin/mocha --require @babel/register"
   },
   "author": "",
@@ -20,6 +21,9 @@
     "@rollup/plugin-node-resolve": "~7.1.1",
     "babel-plugin-istanbul": "~6.0.0",
     "cross-env": "~7.0.2",
+    "eslint": "~8.32.0",
+    "eslint-config-airbnb-base": "~15.0.0",
+    "eslint-plugin-import": "~2.27.5",
     "mocha": "~7.1.1",
     "nyc": "~15.0.0",
     "rollup-plugin-babel": "~4.4.0",
