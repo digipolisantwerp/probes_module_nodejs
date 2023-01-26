@@ -8,7 +8,7 @@ export default function createController(config = {}) {
     alive = [],
   } = hooks;
 
-  async function runAliveChecks(req, res) {
+  async function runAliveChecks(_req, res) {
     try {
       await Promise
         .all(
@@ -22,7 +22,7 @@ export default function createController(config = {}) {
     }
   }
 
-  async function runReadyChecks(req, res) {
+  async function runReadyChecks(_req, res) {
     try {
       await Promise
         .all(

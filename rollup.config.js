@@ -1,5 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
 
 export default {
@@ -10,9 +11,12 @@ export default {
   ],
   plugins: [
     resolve(),
+    commonjs({
+      requireReturnsDefault: 'auto',
+    }),
     babel({
       exclude: 'node_modules/**', // only transpile our source code,
-      runtimeHelpers: true,
+      babelHelpers: 'runtime',
     }),
   ],
   external: [...Object.keys(pkg.dependencies)],
